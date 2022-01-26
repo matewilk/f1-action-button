@@ -1,0 +1,9 @@
+# IDE
+.history
+
+# npm
+node_modules
+
+# nr1
+dist
+tmp
