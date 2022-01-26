@@ -6,6 +6,11 @@ export default class F1ActionButtonVisualization extends React.Component {
     const { requesturl } = this.props;
 
     console.log(requesturl);
+    
+    fetch(requesturl)
+      .then((res) => (res.ok ? res : Promise.reject(res)))
+      .then((res) => res.json().then((data) => console.log(data)))
+      .catch((error) => console.log(error));
   };
 
   render() {
