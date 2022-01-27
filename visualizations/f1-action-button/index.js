@@ -8,6 +8,15 @@ const centerCssProps = {
   alignItems: "center",
 };
 
+const Data = ({ isLoading, data }) =>
+  !isLoading && data !== null ? (
+    <div style={centerCssProps}>
+      <div>data: {data.name}</div>
+    </div>
+  ) : isLoading ? (
+    <div>Loading...</div>
+  ) : null;
+
 export default class F1ActionButtonVisualization extends React.Component {
   state = {
     data: null,
@@ -19,8 +28,6 @@ export default class F1ActionButtonVisualization extends React.Component {
     this.setState({ data: null, error: null, isLoading: true });
     const { requesturl } = this.props;
 
-    console.log(requesturl);
-
     fetch(requesturl)
       .then((res) => (res.ok ? res : Promise.reject(res)))
       .then((res) =>
@@ -31,8 +38,6 @@ export default class F1ActionButtonVisualization extends React.Component {
 
   render() {
     const { data, error, isLoading } = this.state;
-    console.log("data", data);
-    console.log("error", error);
 
     return (
       <Card>
@@ -45,6 +50,7 @@ export default class F1ActionButtonVisualization extends React.Component {
             >
               Request
             </Button>
+            <Data isLoading={isLoading} data={data} />
           </div>
         </CardBody>
       </Card>
