@@ -1,5 +1,12 @@
 import React from "react";
-import { Button } from "nr1";
+import { Button, Card, CardBody } from "nr1";
+
+const centerCssProps = {
+  display: "flex",
+  justifyContent: "center",
+  flexDirection: "column",
+  alignItems: "center",
+};
 
 export default class F1ActionButtonVisualization extends React.Component {
   state = {
@@ -28,11 +35,19 @@ export default class F1ActionButtonVisualization extends React.Component {
     console.log("error", error);
 
     return (
-      <div>
-        <Button onClick={this.onClickHandler} loading={isLoading}>
-          Request
-        </Button>
-      </div>
+      <Card>
+        <CardBody>
+          <div style={centerCssProps}>
+            <Button
+              type={Button.TYPE.PRIMARY}
+              onClick={this.onClickHandler}
+              loading={isLoading}
+            >
+              Request
+            </Button>
+          </div>
+        </CardBody>
+      </Card>
     );
   }
 }
